@@ -1,6 +1,3 @@
-
-
-
 /**********************************************************************
 *                                                                     *
 * Author:           Jonathan Hogan                                    *
@@ -56,76 +53,12 @@ class Stack {
 private:
     int* S;                     // array pointer
     int cap;                    // max stack size
-    int top;                    // current top (index)
-    int size;                   // current num items
     unsigned long int Max_Size; // Max stack size variable
     bool MemDoub;               // Variable to track if memory was doubled
+    int size;                   // current num items
+    int top;                    // current top (index)
+    
 public:
-    /******************************************************************
-     * Stack:
-     *    Constructor.
-     * Params:
-     *    void
-     *
-     * Returns:
-     *     Void
-     *****************************************************************/
-    Stack() {
-        cap = 10;               // set array size
-        S = new int[cap];       // allocate new memory
-        top = -1;               // initialize top of stack
-        size = 0;               // set stack to empty
-        Max_Size = 0;
-        MemDoub = false;        // memory double is false
-    }
-
-    /******************************************************************
-     * Push:
-     *    Push item onto stack.
-     * Params:
-     *    int : data
-     *
-     * Returns:
-     *     Void
-     *****************************************************************/
-    void Push(int data) {
-
-
-        if (size == cap)
-        {
-            top++;
-            size++;
-            cout << "Stack is full. Increasing size.\n";
-            cap = cap * 2;
-            cout << "New capacity is :" << cap << '\n';
-            int* NewS;                                    // Creating a new dynamic array with double the memory
-            NewS = new int[cap];
-            MemDoub = true;                               
-
-            for (int i = 0; i < (cap / 2); i++)           // Assigning the values of the old array into the new one
-            {
-                NewS[i] = S[i];
-            }
-
-            delete[] S;                                   // Releasing the memory of previous array
-
-            S = NewS;                                     // Pointing to the new array
-
-            S[top] = data;
-
-            if (Max_Size <= cap)                          // Updating our Max Size variable
-            {
-                Max_Size = cap;
-            }
-        }
-        else
-        {
-            top++;                                        // move top of stack up
-            size++;                                       // increment size
-            S[top] = data;                                // add item to array
-        }
-
-    }
 
     /******************************************************************
      * Pop:
@@ -174,7 +107,7 @@ public:
             return data;                                  // send item back
         }
     }
-
+    
     /******************************************************************
      * Print:
      *    Used so we can inspect our stack.
@@ -192,6 +125,72 @@ public:
         outFile << "Name: Jonathan Hogan\n" << "Program: P01\n" << "Date: 15 September 2020\n\n"
             << "Starting Size: 10\n" << "Max Size: " << Max_Size << '\n' << "Ending Size: "
             << size << '\n';
+    }
+
+        /******************************************************************
+     * Push:
+     *    Push item onto stack.
+     * Params:
+     *    int : data
+     *
+     * Returns:
+     *     Void
+     *****************************************************************/
+    void Push(int data) {
+
+
+        if (size == cap)
+        {
+            top++;
+            size++;
+            cout << "Stack is full. Increasing size.\n";
+            cap = cap * 2;
+            cout << "New capacity is :" << cap << '\n';
+            int* NewS;                                    // Creating a new dynamic array with double the memory
+            NewS = new int[cap];
+            MemDoub = true;                               
+
+            for (int i = 0; i < (cap / 2); i++)           // Assigning the values of the old array into the new one
+            {
+                NewS[i] = S[i];
+            }
+
+            delete[] S;                                   // Releasing the memory of previous array
+
+            S = NewS;                                     // Pointing to the new array
+
+            S[top] = data;
+
+            if (Max_Size <= cap)                          // Updating our Max Size variable
+            {
+                Max_Size = cap;
+            }
+        }
+        else
+        {
+            top++;                                        // move top of stack up
+            size++;                                       // increment size
+            S[top] = data;                                // add item to array
+        }
+
+    }
+
+    /******************************************************************
+     * Stack:
+     *    Constructor.
+     * Params:
+     *    void
+     *
+     * Returns:
+     *     Void
+     *****************************************************************/
+    Stack() {
+        cap = 10;               // set array size
+        S = new int[cap];       // allocate new memory
+        top = -1;               // initialize top of stack
+        size = 0;               // set stack to empty
+        Max_Size = 0;
+        MemDoub = false;        // memory double is false
     }
 };
 
