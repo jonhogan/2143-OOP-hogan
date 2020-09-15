@@ -1,3 +1,6 @@
+
+
+
 /**********************************************************************
 *                                                                     *
 * Author:           Jonathan Hogan                                    *
@@ -97,8 +100,7 @@ public:
             cout << "New capacity is :" << cap << '\n';
             int* NewS;                                    // Creating a new dynamic array with double the memory
             NewS = new int[cap];
-            MemDoub = true;                               // Changing our bool value of Memory Doubled to True
-                                                          // Lets us know if the memory has been doubled before
+            MemDoub = true;                               
 
             for (int i = 0; i < (cap / 2); i++)           // Assigning the values of the old array into the new one
             {
