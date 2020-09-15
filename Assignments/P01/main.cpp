@@ -1,32 +1,33 @@
-///////////////////////////////////////////////////////////////////////////////
-//                   
-// Author:           Jonathan Hogan
-// Email:            jon.hogan83@gmail.com
-// Label:            P01
-// Title:            Array Based Stack
-// Course:           2143
-// Semester:         Fall 2020
-//
-// Description:
-//       Example implementation of an array based stack that holds integers.
-//       Further adding on to it by allowing the stack to grow or shrink in
-//       size depending on how much is pushed or popped to or from the stack.
-//
-// Usage:
-//       Nothing special right now. Getting familiar with stacks, etc.
-//
-// Files:           
-//       main.cpp
-//       input.txt
-//       stackdata.txt
-//
-///////////////////////////////////////////////////////////////////////////////
+/**********************************************************************
+*                                                                     *
+* Author:           Jonathan Hogan                                    *
+* Email:            jon.hogan83@gmail.com                             *
+* Label:            P01                                               *
+* Title:            Array Based Stack                                 *
+* Course:           2143                                              *
+* Semester:         Fall 2020                                         *
+*                                                                     *
+* Description:                                                        *
+*       Example implementation of an array based stack that holds     *
+*       integers. Further adding on to it by allowing the stack to    *
+*       grow or shrink in size depending on how much is pushed or     *
+*       popped to or from the stack.                                  *
+*                                                                     *
+* Usage:                                                              *
+*       Nothing special right now. Getting familiar with stacks, etc. *
+*                                                                     *
+* Files:                                                              *
+*       main.cpp                                                      *
+*       input.txt                                                     *
+*       output.txt                                                    *
+*                                                                     *
+**********************************************************************/
 #include <iostream>
 #include <string>
 #include <fstream>
 using namespace std;
 
-/**
+/*********************************************************************
  * Stack
  *
  * Description:
@@ -45,19 +46,19 @@ using namespace std;
  * Usage:
  *
  *  Reads set of push and pop commands
- *  from an input file provided. 
+ *  from an input file provided.
  *
- */
+ *********************************************************************/
 class Stack {
 private:
     int* S;                     // array pointer
-    int cap;               // max stack size
+    int cap;                    // max stack size
     int top;                    // current top (index)
     int size;                   // current num items
     unsigned long int Max_Size; // Max stack size variable
-    bool MemDoub;                    // Variable to track if memory was doubled
+    bool MemDoub;               // Variable to track if memory was doubled
 public:
-    /**
+    /******************************************************************
      * Stack:
      *    Constructor.
      * Params:
@@ -65,17 +66,17 @@ public:
      *
      * Returns:
      *     Void
-     */
+     *****************************************************************/
     Stack() {
-        cap = 10;          // set array size
-        S = new int[cap];  // allocate new memory
+        cap = 10;               // set array size
+        S = new int[cap];       // allocate new memory
         top = -1;               // initialize top of stack
         size = 0;               // set stack to empty
         Max_Size = 0;
-        MemDoub = false;             // memory double is false
+        MemDoub = false;        // memory double is false
     }
 
-    /**
+    /******************************************************************
      * Push:
      *    Push item onto stack.
      * Params:
@@ -83,43 +84,43 @@ public:
      *
      * Returns:
      *     Void
-     */
+     *****************************************************************/
     void Push(int data) {
 
-        
+
         if (size == cap)
         {
             top++;
             size++;
             cout << "Stack is full. Increasing size.\n";
             cap = cap * 2;
-            cout <<"New capacity is :" << cap << '\n';
+            cout << "New capacity is :" << cap << '\n';
             int* NewS;                                    // Creating a new dynamic array with double the memory
             NewS = new int[cap];
-            MD = true;                                  // Changing our bool value of Memory Doubled to True
-                                                        // Lets us know if the memory has been doubled before
+            MemDoub = true;                               // Changing our bool value of Memory Doubled to True
+                                                          // Lets us know if the memory has been doubled before
 
-            for (int i = 0; i < (cap / 2); i++)    // Assigning the values of the old array into the new one
+            for (int i = 0; i < (cap / 2); i++)           // Assigning the values of the old array into the new one
             {
                 NewS[i] = S[i];
             }
 
-            delete[] S;                                // Releasing the memory of previous array
+            delete[] S;                                   // Releasing the memory of previous array
 
-            S = NewS;                                  // Pointing to the new array
+            S = NewS;                                     // Pointing to the new array
 
             S[top] = data;
 
-            if (Max_Size <= cap)                       // Updating our Max Size variable
+            if (Max_Size <= cap)                          // Updating our Max Size variable
             {
                 Max_Size = cap;
             }
         }
         else
         {
-            top++;                                     // move top of stack up
-            size++;                                    // increment size
-            S[top] = data;                             // add item to array
+            top++;                                        // move top of stack up
+            size++;                                       // increment size
+            S[top] = data;                                // add item to array
         }
 
     }
@@ -135,27 +136,27 @@ public:
      */
     int Pop() {
 
-        if (top == -1)                                 // If stack is empty
+        if (top == -1)                                   // If stack is empty
         {
-            cout << "Error: Stack Empty!\n";           // User is notified
-            return -1;                                 // -1 value returned instead
-        }                                              // If top is not empty, value pops
+            cout << "Error: Stack Empty!\n";
+            return -1;
+        }
 
-        if (MD == true && top < (cap / 2))             // If stack size dips below half
+        if (MemDoub == true && top < (cap / 2))          // If stack size dips below half
         {
-            cout << "Stack is at less than 50% of capacity, decreasing size.\n"; 
-            cap = cap / 2;                             // Trimming capacity in half
+            cout << "Stack is at less than 50% of capacity, decreasing size.\n";
+            cap = cap / 2;                               // Halves the capacity
             cout << "New capacity is :" << cap << '\n';
             int* NStack;
-            NNS = new int[cap];
+            NStack = new int[cap];
 
 
             for (int i = 0; i < cap; i++)
             {
-                NStack[i] = S[i];                      // Copying contents of the previous bigger stack
-            }                                          // into the new array with smaller capacity
+                NStack[i] = S[i];                         // Copying contents of the previous bigger stack
+            }                                             // into the new array with smaller capacity
 
-            delete[] S;                                // Releasing the memory of previous array
+            delete[] S;                                   // Releasing the memory of previous array
             S = NStack;
             int data = S[top];
             top--;
@@ -165,14 +166,14 @@ public:
         }
         else
         {
-            int data = S[top];                          // pull item from stack
-            top--;                                      // shrink the stack
-            size--;                                     // update our size
-            return data;                                // send item back
+            int data = S[top];                            // pull item from stack
+            top--;                                        // shrink the stack
+            size--;                                       // update our size
+            return data;                                  // send item back
         }
     }
 
-    /**
+    /******************************************************************
      * Print:
      *    Used so we can inspect our stack.
      * Params:
@@ -180,15 +181,15 @@ public:
      *
      * Returns:
      *     void
-     */
-    void Print() 
+     *****************************************************************/
+    void Print()
     {
         // Output File Print formatting 
 
         ofstream outFile("output.txt");
         outFile << "Name: Jonathan Hogan\n" << "Program: P01\n" << "Date: 15 September 2020\n\n"
-           << "Starting Size: 10\n" << "Max Size: " << Max_Size << '\n' << "Ending Size: "
-           << size << '\n';
+            << "Starting Size: 10\n" << "Max Size: " << Max_Size << '\n' << "Ending Size: "
+            << size << '\n';
     }
 };
 
@@ -199,7 +200,7 @@ int main() {
     Stack S1;                                           // Stack Object dedclared
     ifstream inFile;
 
-    
+
     inFile.open("input.txt");
 
     if (!inFile)                                        // If file isn't opened successfully
@@ -213,7 +214,7 @@ int main() {
     {
         inFile >> command;
 
-        if (command == "push")                           // If the command is Push, a number is read afterwards before new line
+        if (command == "push")                           // If the command is Push, a number is read next
         {
             inFile >> num;
             S1.Push(num);
@@ -227,7 +228,7 @@ int main() {
 
 
     S1.Print();
-     
+
     system("pause");
     return 0;
 }
