@@ -1,0 +1,7 @@
+Name: Jonathan Hogan
+Program: P01
+Date: 15 September 2020
+
+Starting Size: 10
+Max Size: 128
+Ending Size: 50
