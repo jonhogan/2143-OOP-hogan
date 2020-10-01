@@ -10,8 +10,7 @@ Key Words
 
 
 #### Abstraction
-> A fundamental concept in computer science and software development. The process of abstraction can also be
-> referred to as modeling and is closely related to the concepts of theory and design.
+>Displaying only essential information and hiding the details. Data abstraction refers to >providing only essential information about the data to the outside world, hiding the >background details or implementation.
 
 #### Attributes / Properties
 > A specification that defines a property of an object, element, or file. It may also refer to or set the specific value for a
