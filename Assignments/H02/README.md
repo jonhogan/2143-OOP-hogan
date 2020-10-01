@@ -10,7 +10,7 @@ Key Words
 
 
 #### Abstraction
->Displaying only essential information and hiding the details. Data abstraction refers to >providing only essential information about the data to the outside world, hiding the >background details or implementation.
+>Displaying only essential information and hiding the details. Data abstraction refers to providing only essential information about the data to the outside world, hiding the background details or implementation.
 
 #### Attributes / Properties
 > A specification that defines a property of an object, element, or file. It may also refer to or set the specific value for a
