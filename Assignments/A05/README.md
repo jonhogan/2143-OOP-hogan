@@ -1,7 +1,7 @@
 ##A05
--Name: Jonathan Hogan
--Date: 28 Jan 2021
--Class: 2143 OOP
+- Name: Jonathan Hogan
+- Date: 28 Jan 2021
+- Class: 2143 OOP
 
 
 Abstraction
