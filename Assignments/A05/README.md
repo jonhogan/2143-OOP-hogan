@@ -45,6 +45,6 @@
 > * "Protected" - Only the current class and subclasses of the class will have access to the field or method. Can be access in child classes or derived classes.
 
 #### Static
-> 
+> A method that is shared by all instances of a class. And they can be private or public. If they are public then you can call them without the need to instantiate the classes.
 #### Virtual
 > Refers to inheritable and overridable functions or methods for which "dynamic dispatch" is facilitated. Virtual functions allow a program to call methods that don't necessarily even exist at the moment the code is compiled.
