@@ -14,14 +14,18 @@ public:
         height = h;
         dx = -1;            // direction
         dy = -1;
-        x = (rand() % int(width));  // location
-        y = (rand() % int(height));
+        x = 20;  // location
+        y = 240;
         d = .1;             // distance
 
         // define a circle with radius = 200
         circle = new sf::CircleShape(20.f);
 
-        circle->setFillColor(sf::Color::Green);
+        red = (rand()%255);                                         //
+        green = (rand()%255);                                       //  Randomly assigns a color
+        blue = (rand()%255);                                        //  to the player object
+                                                                    //  
+        circle->setFillColor(sf::Color(red, green, blue, 255));     //
 
         // set the radius to whatever
         circle->setRadius(20.f);
@@ -80,6 +84,9 @@ private:
     float width;
     float height;
     float d;                    // distance to move
+    int red;
+    int blue;
+    int green;
     sf::Vector2f position; 
 
     /**

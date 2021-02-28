@@ -22,7 +22,7 @@ int main()
     int window_width = 600;
     int window_height = 600;
 
-    sf::RenderWindow window(sf::VideoMode(window_width, window_height), "Ball example!");
+    sf::RenderWindow window(sf::VideoMode(window_width, window_height), "JHOGAN Game");
     
     PLAYER B(window_width,window_height);
 
