@@ -1,7 +1,24 @@
 #include <SFML/Graphics.hpp>
 #include "Game.hpp"
 
-int main() {
+/***********************************************************************************************
+ 
+ 
+                              __       __  ______  _______  
+                             |  \  _  |  \|      \|       \ 
+                             | $$ / \ | $$ \$$$$$$| $$$$$$$\
+                             | $$/  $\| $$  | $$  | $$__/ $$
+                             | $$  $$$\ $$  | $$  | $$    $$
+                             | $$ $$\$$\$$  | $$  | $$$$$$$ 
+                             | $$$$  \$$$$ _| $$_ | $$      
+                             | $$$    \$$$|   $$ \| $$      
+                              \$$      \$$ \$$$$$$ \$$      
+
+***********************************************************************************************/
+
+
+int main()
+{
     int window_width = 600;
     int window_height = 600;
 
@@ -11,9 +28,11 @@ int main() {
 
     
 
-    while (window.isOpen()) {
+    while (window.isOpen())
+     {
         sf::Event event;
-        while (window.pollEvent(event)) {
+        while (window.pollEvent(event)) 
+        {
             if (event.type == sf::Event::Closed)
                 window.close();
         }
