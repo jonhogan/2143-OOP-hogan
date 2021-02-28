@@ -10,7 +10,7 @@ Using the code snippets for help [here](../../Resources/09-SFML/README.md), and 
 # Todo:
 
 #### Player
-  ~~- Is a circle shape ~~
+  - ~~Is a circle shape~~
     - But could be another shape or sprite (later).
   - Size is configurable
   - Color is configurable
