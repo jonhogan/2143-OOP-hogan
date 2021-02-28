@@ -1,22 +1,30 @@
 #include <SFML/Graphics.hpp>
+#include "Game.hpp"
 
-int main()
-{
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+int main() {
+    int window_width = 600;
+    int window_height = 600;
 
-    while (window.isOpen())
-    {
+    sf::RenderWindow window(sf::VideoMode(window_width, window_height), "Ball example!");
+    
+    PLAYER B(window_width,window_height);
+
+    
+
+    while (window.isOpen()) {
         sf::Event event;
-        while (window.pollEvent(event))
-        {
+        while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
                 window.close();
         }
 
+       
+        
+        B.update();
+
+
         window.clear();
-        window.draw(shape);
+        window.draw(B);
         window.display();
     }
 
