@@ -2,6 +2,10 @@
 #include <iostream>
 
 //https://en.sfml-dev.org/forums/index.php?topic=12278.0
+
+
+
+
 class PLAYER : public sf::Drawable {
 public:
     PLAYER(int w,int h) {
@@ -33,7 +37,7 @@ public:
 
     void update(){
 
-        position = circle->getPosition();
+        /*position = circle->getPosition();
         bool hit = false;
 
         if(position.x >= width)
@@ -63,7 +67,7 @@ public:
         x = position.x + (d * dx);
         y = position.y + (d * dy);
 
-        circle->setPosition(sf::Vector2f(x, y));
+        circle->setPosition(sf::Vector2f(x, y));*/
 
     }
 
