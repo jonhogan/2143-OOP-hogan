@@ -6,73 +6,43 @@
 
 
 
-class PLAYER : public sf::Drawable {
-public:
-    PLAYER(int w,int h) {
+class PLAYER : public sf::Drawable
+{
+    public:
+        PLAYER(int w,int h)
+        {
 
-        width = w;          // window size
-        height = h;
-        dx = -1;            // direction
-        dy = -1;
-        x = 20;  // location
-        y = 240;
-        d = .1;             // distance
+            width = w;          // window size
+            height = h;
+            dx = -1;            // direction
+            dy = -1;
+            x = 20;  // location
+            y = 240;
+            d = .1;             // distance
 
-        // define a circle with radius = 200
-        circle = new sf::CircleShape(20.f);
+            // define a circle with radius = 200
+            circle = new sf::CircleShape(20.f);
 
-        red = (rand()%255);                                         //
-        green = (rand()%255);                                       //  Randomly assigns a color
-        blue = (rand()%255);                                        //  to the player object
+            red = (rand()%255);                                         //
+            green = (rand()%255);                                       //  Randomly assigns a color
+            blue = (rand()%255);                                        //  to the player object
                                                                     //  
-        circle->setFillColor(sf::Color(red, green, blue, 255));     //
+            circle->setFillColor(sf::Color(red, green, blue, 255));     //
 
-        // set the radius to whatever
-        circle->setRadius(20.f);
+            // set the radius to whatever
+            circle->setRadius(20.f);
 
-        // change the number of sides (points) to 100
-        circle->setPointCount(100);
+            // change the number of sides (points) to 100
+            circle->setPointCount(100);
 
-        circle->setPosition(sf::Vector2f(x, y));
-
-
-    }
-
-
-    void update(){
-
-        /*position = circle->getPosition();
-        bool hit = false;
-
-        if(position.x >= width)
-        {
-            dx = dx * -1;
-            hit = true;
+            circle->setPosition(sf::Vector2f(x, y));
         }
 
-        if(position.y >= height)
-        {
-            dy = dy * -1;
-            hit = true;
-        }
 
-        if(position.x < 0)
-        {
-            dx = dx * -1;
-            hit = true;
-        }
+    void update()
+    {
 
-        if(position.y < 0)
-        {
-            dy = dy * -1;
-            hit = true;
-        }
-
-        x = position.x + (d * dx);
-        y = position.y + (d * dy);
-
-        circle->setPosition(sf::Vector2f(x, y));*/
-
+        
     }
 
 private:
