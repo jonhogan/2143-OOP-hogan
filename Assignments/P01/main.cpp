@@ -24,6 +24,7 @@ int main()
 
     sf::RenderWindow window(sf::VideoMode(window_width, window_height), "JHOGAN Game", sf::Style::Default);
     PLAYER B(window_width,window_height, 15);
+    DEBRIS A(window_width,window_height);
     
        
 
@@ -60,17 +61,20 @@ int main()
                         B.moveDown(5);
                     }
             }
+
+            
             
                 
         }
 
        
-        
+        A.move(-15);
         
 
 
         window.clear();
         window.draw(B);
+        window.draw(A);
         window.display();
     }
 
