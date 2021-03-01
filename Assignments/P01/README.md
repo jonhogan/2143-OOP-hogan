@@ -7,7 +7,7 @@ Follow instructions for this first program without adding functionality or perso
 Using the code snippets for help [here](../../Resources/09-SFML/README.md), and the [SFML documention](https://www.sfml-dev.org/learn.php) write a program (game) that does the following:
 
 
-# Todo:
+# TODO:
 
 #### Player
   - ~~Is a circle shape~~
