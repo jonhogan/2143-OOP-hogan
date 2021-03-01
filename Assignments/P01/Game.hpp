@@ -16,12 +16,12 @@ class PLAYER : public sf::Drawable
             height = h;
             dx = -1;            // direction
             dy = -1;
-            x = 20;  // location
+            x = 60;  // location
             y = 240;
             d = .1;             // distance
 
             // define a circle with radius = 200
-            circle = new sf::CircleShape(20.f);
+            circle = new sf::CircleShape(5.f);
 
             red = (rand()%255);                                         //
             green = (rand()%255);                                       //  Randomly assigns a color
@@ -39,9 +39,10 @@ class PLAYER : public sf::Drawable
         }
 
 
-    void update()
+    void move(float vert)
     {
-
+        dy = vert;
+        y = y + vert;
         
     }
 
