@@ -41,7 +41,7 @@ class PLAYER : public sf::Drawable
             height = h;
             radius = r;
             x = 60;  // location
-            y = 240;
+            y = (width/3);
             
             // define a circle with radius = 200
             circle = new sf::CircleShape(radius);
