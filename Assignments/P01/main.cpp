@@ -62,13 +62,13 @@ int main()
                     }
             }
 
-            A.move(15);
+            
             
                 
         }
 
        
-        
+        A.move(-15);
         
 
 
