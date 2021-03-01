@@ -15,11 +15,8 @@ class PLAYER : public sf::Drawable
         sf::CircleShape *circle;    // reference to our "player"
         float x;                      // x location
         float y;                      // y location
-        float dx;                     // "change" in x
-        float dy;                     // "change" in y
         float width;
         float height;
-        float d;                    // distance to move
         float radius;
         sf::Vector2f position;
         
@@ -46,7 +43,7 @@ class PLAYER : public sf::Drawable
             // define a circle with radius = 200
             circle = new sf::CircleShape(radius);
 
-                circle->setFillColor(sf::Color(76, 0, 153, 255));     //
+            circle->setFillColor(sf::Color(76, 0, 153, 255));     //
 
             // set the radius to whatever
             circle->setRadius(radius);
@@ -58,20 +55,68 @@ class PLAYER : public sf::Drawable
         }
 
 
-      void moveUp(float vert)
+        void moveUp(float dy)
         {
             if(y > 0)
             {
-                y += vert;
+                y += dy;
                 circle->setPosition(sf::Vector2f(x, y));
             }
         }
-        void moveDown(float vert)
+        void moveDown(float dy)
         {
             if(y < (height - (radius * 2)))
             {
-                y += vert;
+                y += dy;
                 circle->setPosition(sf::Vector2f(x, y));
+            }
+        }
+};
+
+class DEBRIS : public sf::Drawable
+{
+    private:
+        sf::RectangleShape *rectangle;    // reference to our "player"
+        float x;                      // x location
+        float y;                      // y location
+        float width;
+        float height;
+        float d;                    // distance to move
+        float radius;
+        sf::Vector2f position;
+        
+        /**
+        * virtual = A virtual function a member function which is declared within base class and is re-defined (Overriden) by derived class.
+        * function draw:
+        *     draw an SFML object to some window
+        */
+        virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const
+        {
+            target.draw(*rectangle, states);
+        }
+
+    public:
+        DEBRIS(int w,int h)
+        {
+
+            width = w;          // window size
+            height = h;
+            x = h;  // location
+            y = rand() % h;
+            
+            // define a rectangle
+            rectangle = new sf::RectangleShape (sf::Vector2f(15,15));
+            rectangle->setFillColor(sf::Color(rand()%255, rand()%255, rand()%255, 255));     //
+            rectangle->setPosition(sf::Vector2f(width, y));
+        }
+
+
+      void move(float dx)
+        {
+            if(x > 0)
+            {
+                x += dx;
+                rectangle->setPosition(sf::Vector2f(x, y));
             }
         }
 };
