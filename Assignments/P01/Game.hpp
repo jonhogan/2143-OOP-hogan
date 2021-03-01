@@ -1,6 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
+
+
 //https://en.sfml-dev.org/forums/index.php?topic=12278.0
 
 
@@ -8,6 +10,30 @@
 
 class PLAYER : public sf::Drawable
 {
+     private:
+        sf::CircleShape *circle;    // reference to our "ball"
+        float x;                      // x location
+        float y;                      // y location
+        float dx;                     // "change" in x
+        float dy;                     // "change" in y
+        float width;
+        float height;
+        float d;                    // distance to move
+        int red;
+        int blue;
+        int green;
+        sf::Vector2f position;
+        
+        /**
+        * virtual = A virtual function a member function which is declared within base class and is re-defined (Overriden) by derived class.
+        * function draw:
+        *     draw an SFML object to some window
+        */
+        virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const
+        {
+            target.draw(*circle, states);
+        }
+
     public:
         PLAYER(int w,int h)
         {
@@ -39,34 +65,9 @@ class PLAYER : public sf::Drawable
         }
 
 
-    void move(float vert)
-    {
-        dy = vert;
-        y = y + vert;
-        
-    }
-
-private:
-    sf::CircleShape *circle;    // reference to our "ball"
-    float x;                      // x location
-    float y;                      // y location
-    float dx;                     // "change" in x
-    float dy;                     // "change" in y
-    float width;
-    float height;
-    float d;                    // distance to move
-    int red;
-    int blue;
-    int green;
-    sf::Vector2f position; 
-
-    /**
-     * virtual = A virtual function a member function which is declared within base class and is re-defined (Overriden) by derived class.
-     * function draw:
-     *     draw an SFML object to some window
-     */
-    virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const
-    {
-            target.draw(*circle, states);
-    }
+      void move(float vert)
+        {
+            y += vert;
+            circle->setPosition(sf::Vector2f(x, y));
+        }
 };

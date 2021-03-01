@@ -23,8 +23,8 @@ int main()
     int window_height = 600;
 
     sf::RenderWindow window(sf::VideoMode(window_width, window_height), "JHOGAN Game", sf::Style::Default);
-    
     PLAYER B(window_width,window_height);
+    
        
 
     while (window.isOpen())
@@ -42,22 +42,22 @@ int main()
                     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
                     {
                         // move up...
-                        B.move(1);
+                        B.move(-5);
                     }
                     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
                     {
                         // move left...
-                        B.move(1);
+                        B.move(-5);
                     }
                     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
                     {
                         // move down...
-                        B.move(-1);
+                        B.move(5);
                     }
                     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
                     {
                         // move down...
-                        B.move(-1);
+                        B.move(5);
                     }
             }
             
