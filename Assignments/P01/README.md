@@ -12,7 +12,7 @@ Using the code snippets for help [here](../../Resources/09-SFML/README.md), and 
 #### Player
   - ~~Is a circle shape~~
     - But could be another shape or sprite (later).
-  - Size is configurable
+  - Size is configurable **sort of done, using a variable for the radius**
   - Color is configurable
   - Starting location also configurable
     - However for this "game" player starts at middle left of screen. 
