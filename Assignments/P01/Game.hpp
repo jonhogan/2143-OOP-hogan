@@ -3,6 +3,7 @@
 
 
 
+
 //https://en.sfml-dev.org/forums/index.php?topic=12278.0
 
 
@@ -10,8 +11,8 @@
 
 class PLAYER : public sf::Drawable
 {
-     private:
-        sf::CircleShape *circle;    // reference to our "ball"
+    private:
+        sf::CircleShape *circle;    // reference to our "player"
         float x;                      // x location
         float y;                      // y location
         float dx;                     // "change" in x
@@ -19,9 +20,7 @@ class PLAYER : public sf::Drawable
         float width;
         float height;
         float d;                    // distance to move
-        int red;
-        int blue;
-        int green;
+        float radius;
         sf::Vector2f position;
         
         /**
@@ -35,28 +34,22 @@ class PLAYER : public sf::Drawable
         }
 
     public:
-        PLAYER(int w,int h)
+        PLAYER(int w,int h, float r)
         {
 
             width = w;          // window size
             height = h;
-            dx = -1;            // direction
-            dy = -1;
+            radius = r;
             x = 60;  // location
             y = 240;
-            d = .1;             // distance
-
+            
             // define a circle with radius = 200
-            circle = new sf::CircleShape(5.f);
+            circle = new sf::CircleShape(radius);
 
-            red = (rand()%255);                                         //
-            green = (rand()%255);                                       //  Randomly assigns a color
-            blue = (rand()%255);                                        //  to the player object
-                                                                    //  
-            circle->setFillColor(sf::Color(red, green, blue, 255));     //
+                circle->setFillColor(sf::Color(76, 0, 153, 255));     //
 
             // set the radius to whatever
-            circle->setRadius(20.f);
+            circle->setRadius(radius);
 
             // change the number of sides (points) to 100
             circle->setPointCount(100);
@@ -65,9 +58,20 @@ class PLAYER : public sf::Drawable
         }
 
 
-      void move(float vert)
+      void moveUp(float vert)
         {
-            y += vert;
-            circle->setPosition(sf::Vector2f(x, y));
+            if(y > 0)
+            {
+                y += vert;
+                circle->setPosition(sf::Vector2f(x, y));
+            }
+        }
+        void moveDown(float vert)
+        {
+            if(y < (height - (radius * 2)))
+            {
+                y += vert;
+                circle->setPosition(sf::Vector2f(x, y));
+            }
         }
 };

@@ -19,11 +19,11 @@
 
 int main()
 {
-    int window_width = 600;
+    int window_width = 820;
     int window_height = 600;
 
     sf::RenderWindow window(sf::VideoMode(window_width, window_height), "JHOGAN Game", sf::Style::Default);
-    PLAYER B(window_width,window_height);
+    PLAYER B(window_width,window_height, 15);
     
        
 
@@ -42,22 +42,22 @@ int main()
                     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
                     {
                         // move up...
-                        B.move(-5);
+                        B.moveUp(-5);
                     }
                     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
                     {
                         // move left...
-                        B.move(-5);
+                        B.moveUp(-5);
                     }
                     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
                     {
                         // move down...
-                        B.move(5);
+                        B.moveDown(5);
                     }
                     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
                     {
                         // move down...
-                        B.move(5);
+                        B.moveDown(5);
                     }
             }
             
