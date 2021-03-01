@@ -16,7 +16,7 @@ Using the code snippets for help [here](../../Resources/09-SFML/README.md), and 
   - Color is configurable
   - Starting location also configurable
     - However for this "game" player starts at middle left of screen. 
-  - Moves up and down (1 direction only for now) using up and down arrows (additional keys can be set to do same thing).
+  - ~~Moves up and down (1 direction only for now) using up and down arrows (additional keys can be set to do same thing).~~
     - A player can however possibly move other directions as well (in later installments).
 
 #### Debris
