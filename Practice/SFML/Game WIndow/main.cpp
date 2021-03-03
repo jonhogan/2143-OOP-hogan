@@ -74,51 +74,55 @@ int main()
 
    while(window.isOpen())
    {
-    /***********************************************************************
-    ************************************************************************
-    ** Breakdown:                                                         **
-    **                                                                    **
-    ** Just a simple one, calls the isOpen method to returns a bool       **
-    **                                                                    **
-    ************************************************************************
-    ***********************************************************************/
+        /***********************************************************************
+        ************************************************************************
+        ** Breakdown:                                                         **
+        **                                                                    **
+        ** Just a simple one, calls the isOpen method to returns a bool       **
+        **                                                                    **
+        ************************************************************************
+        ***********************************************************************/
 
-    sf::Event event;
-    while (window.pollEvent(event))
-    {
-        if (event.type == sf::Event::Closed)
+        sf::Event event;
+        while (window.pollEvent(event))
         {
-            window.close();
+            if (event.type == sf::Event::Closed)
+            {
+                window.close();
+            }
+
+            /*******************************************************************
+            ******************************************************************** 
+            **                                                                **
+            **  A lot here, so straight from sfml-dev.org:                    **
+            **                                                                **
+            **  Defines a system event and its parameters.                    **
+            **  sf::Event holds all the informations about a system event     **     
+            **  that just happened.                                           **
+            **                                                                **
+            **  Events are retrieved using the sf::Window::pollEvent and      **
+            **  sf::Window::waitEvent functions.                              **
+            **                                                                **
+            **  A sf::Event instance contains the type of the event (mouse    **
+            **  moved, key pressed, window closed, ...) as well as the        **
+            **  details about this particular event. Please note that the     **
+            **  event parameters are defined in a union, which means that     **
+            ** only the member matching the type of the event will be         **
+            ** properly filled; all other members will have undefined values  **
+            ** and must not be read if the type of the event doesn't match.   **
+            ** For example, if you received a KeyPressed event, then you      **
+            ** must read the event.key member, all other members such as      **
+            ** event.mouseMove or event.text will have undefined values.      **
+            **                                                                **
+            ********************************************************************
+            *******************************************************************/
+    
         }
-
-        /*******************************************************************
-        ******************************************************************** 
-        **                                                                **
-        **  A lot here, so straight from sfml-dev.org:                    **
-        **                                                                **
-        **  Defines a system event and its parameters.                    **
-        **  sf::Event holds all the informations about a system event     **     
-        **  that just happened.                                           **
-        **                                                                **
-        **  Events are retrieved using the sf::Window::pollEvent and      **
-        **  sf::Window::waitEvent functions.                              **
-        **                                                                **
-        **  A sf::Event instance contains the type of the event (mouse    **
-        **  moved, key pressed, window closed, ...) as well as the        **
-        **  details about this particular event. Please note that the     **
-        **  event parameters are defined in a union, which means that     **
-        ** only the member matching the type of the event will be         **
-        ** properly filled; all other members will have undefined values  **
-        ** and must not be read if the type of the event doesn't match.   **
-        ** For example, if you received a KeyPressed event, then you      **
-        ** must read the event.key member, all other members such as      **
-        ** event.mouseMove or event.text will have undefined values.      **
-        **                                                                **
-        ********************************************************************
-        *******************************************************************/
-
+        
+        window.clear();         // clears the window               
+        window.draw(shape);     // draw out shape object
+        window.display();
     }
- }
  /*
  * To compile:
  *  g++ -c main.cpp
