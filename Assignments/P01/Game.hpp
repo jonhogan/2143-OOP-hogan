@@ -97,12 +97,25 @@ class DEBRIS : public sf::Drawable
         }
 
     public:
+        DEBRIS()
+        {
+
+            width = 300;          // window size
+            height = 300;
+            x = width;  // location
+            y = rand() % 300;
+            
+            // define a rectangle
+            rectangle = new sf::RectangleShape (sf::Vector2f(15,15));
+            rectangle->setFillColor(sf::Color(rand()%255, rand()%255, rand()%255, 255));     //
+            rectangle->setPosition(sf::Vector2f(width, y));
+        }
         DEBRIS(int w,int h)
         {
 
             width = w;          // window size
             height = h;
-            x = h;  // location
+            x = w;  // location
             y = rand() % h;
             
             // define a rectangle

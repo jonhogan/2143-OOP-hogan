@@ -21,11 +21,17 @@ int main()
 {
     int window_width = 820;
     int window_height = 600;
+    DEBRIS debris[5];
 
     sf::RenderWindow window(sf::VideoMode(window_width, window_height), "JHOGAN Game", sf::Style::Default);
     PLAYER B(window_width,window_height, 15);
     DEBRIS A(window_width,window_height);
     
+
+    for (int i = 0; i < 5; i++)
+    {
+        debris[i] = A;
+    }
        
 
     while (window.isOpen())
@@ -74,6 +80,7 @@ int main()
 
         window.clear();
         window.draw(B);
+        
         window.draw(A);
         window.display();
     }
