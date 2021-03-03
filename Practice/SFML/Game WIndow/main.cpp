@@ -42,46 +42,46 @@ int main()
    *************************************************************************
    ************************************************************************/
 
-  // Create a shape to be drawn in our window
-  sf::CircleShape shape(100.f);
+   // Create a shape to be drawn in our window
+   sf::CircleShape shape(100.f);
 
-  /*************************************************************************
-  **************************************************************************
-  ** Breakdown:                                                           **
-  **                                                                      **
-  ** This is the Circleshape class, you will name your variable ('shape'  **
-  ** in this case), you will pass through a float variable to set the     **
-  ** radius                                                               **
-  **                                                                      **
-  **************************************************************************
-  *************************************************************************/
+   /************************************************************************
+   *************************************************************************
+   ** Breakdown:                                                          **
+   **                                                                     **
+   ** This is the Circleshape class, you will name your variable ('shape' **
+   ** in this case), you will pass through a float variable to set the    **
+   ** radius                                                              **
+   **                                                                     **
+   *************************************************************************
+   ************************************************************************/
 
-  // Give your shape a color
-  shape.setFillColor(sf::Color::Green);
+   // Give your shape a color
+   shape.setFillColor(sf::Color::Green);
 
-  /*************************************************************************
-  **************************************************************************
-  ** Breakdown:                                                           **
-  **                                                                      **
-  ** In this one, we call the setFillColor method, and pass through a     **
-  ** class refernce. In this case we passed though a pre set color.       **
-  **                                                                      **
-  **************************************************************************
-  *************************************************************************/
+   /************************************************************************
+   *************************************************************************
+   ** Breakdown:                                                          **
+   **                                                                     **
+   ** In this one, we call the setFillColor method, and pass through a    **
+   ** class refernce. In this case we passed though a pre set color.      **
+   **                                                                     **
+   *************************************************************************
+   ************************************************************************/
 
- // We have set up a Window, created an object to drawn, and given it a color
- // Now on to the main part of the program.. the window loop
+   // We have set up a Window, created an object to drawn, and given it a
+   // color. Now on to the main part of the program.. the window loop
 
- while(window.isOpen())
- {
-  /*************************************************************************
-  **************************************************************************
-  ** Breakdown:                                                           **
-  **                                                                      **
-  ** Just a simple one, calls the isOpen method to returns a bool         **
-  **                                                                      **
-  **************************************************************************
-  *************************************************************************/
+   while(window.isOpen())
+   {
+    /***********************************************************************
+    ************************************************************************
+    ** Breakdown:                                                         **
+    **                                                                    **
+    ** Just a simple one, calls the isOpen method to returns a bool       **
+    **                                                                    **
+    ************************************************************************
+    ***********************************************************************/
 
     sf::Event event;
     while (window.pollEvent(event))
@@ -90,6 +90,33 @@ int main()
         {
             window.close();
         }
+
+        /*******************************************************************
+        ******************************************************************** 
+        **                                                                **
+        **  A lot here, so straight from sfml-dev.org:                    **
+        **                                                                **
+        **  Defines a system event and its parameters.                    **
+        **  sf::Event holds all the informations about a system event     **     
+        **  that just happened.                                           **
+        **                                                                **
+        **  Events are retrieved using the sf::Window::pollEvent and      **
+        **  sf::Window::waitEvent functions.                              **
+        **                                                                **
+        **  A sf::Event instance contains the type of the event (mouse    **
+        **  moved, key pressed, window closed, ...) as well as the        **
+        **  details about this particular event. Please note that the     **
+        **  event parameters are defined in a union, which means that     **
+        ** only the member matching the type of the event will be         **
+        ** properly filled; all other members will have undefined values  **
+        ** and must not be read if the type of the event doesn't match.   **
+        ** For example, if you received a KeyPressed event, then you      **
+        ** must read the event.key member, all other members such as      **
+        ** event.mouseMove or event.text will have undefined values.      **
+        **                                                                **
+        ********************************************************************
+        *******************************************************************/
+
     }
  }
 
