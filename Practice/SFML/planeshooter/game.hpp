@@ -8,7 +8,10 @@ class GAME
     
     public:
 
-        GAME();
+        GAME()
+        {
+            
+        }
         void Run();
         void ProcessEvents();
         void Update();
