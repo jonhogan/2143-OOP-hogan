@@ -47,7 +47,7 @@ int main()
                 
                 case sf::Event::EventType::KeyPressed:
                     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-                    {
+                    {   
                         // move up...
                         B.moveUp(-5);
                     }
@@ -74,7 +74,7 @@ int main()
         }
 
        
-        A.move(-15);
+        A.move(-5);
         
 
 
