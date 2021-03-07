@@ -61,28 +61,43 @@ class GAME
 
     public:
 
-    /**********************************************************************
-    *                                                                     *
-    * GAME                                                                *
-    *                                                                     *
-    * Description:                                                        *
-    *       Holds the game window, player object and anyother objects in  *
-    *       game.                                                         *
-    *                                                                     *
-    * Method Variables:                                                   *
-    *                                                                     *
-    * Use:                                                                *
-    *   Creates our game object                                           *
-    *                                                                     *
-    **********************************************************************/
+        /******************************************************************
+        *                                                                 *
+        * GAME                                                            *
+        *                                                                 *
+        * Description:                                                    *
+        *       Holds the game window, player object and anyother objects *
+        *       in game.                                                  *
+        *                                                                 *
+        * Method Variables:                                               *
+        *                                                                 *
+        * Use:                                                            *
+        *   Creates our game object                                       *
+        *                                                                 *
+        ******************************************************************/
         GAME(): mWindow(
             sf::VideoMode(640,480), "Game Window",
             sf::Style::Default), mPlayer()
         {
             mPlayer.setRadius(40.f);
             mPlayer.setPosition(100.f, 100.f);
-            mPlayer.setFillColor(sf::Color::Green);
+            mPlayer.setFillColor(sf::Color(76, 0, 153, 255));
         }
+
+        /******************************************************************
+        *                                                                 *
+        * Run                                                             *
+        *                                                                 *
+        * Description:                                                    *
+        *       Holds the window while loop.                              *
+        *                                                                 *
+        * Method Variables:                                               *
+        *                                                                 *
+        * Use:                                                            *
+        *   Runs the processes to run the game whilewindow.isOpen = true  *
+        *                                                                 *
+        ******************************************************************/
+
         void Run()
         {
             while (mWindow.isOpen())
@@ -93,6 +108,21 @@ class GAME
             }
 
         }
+
+        /******************************************************************
+        *                                                                 *
+        * ProcessEvents                                                   *
+        *                                                                 *
+        * Description:                                                    *
+        *       Polls events in game, key presses, mouse clicks and       *
+        *       other events                                              *
+        *                                                                 *
+        * Method Variables:                                               *
+        *                                                                 *
+        * Use:                                                            *
+        *   Runs the pollEvent while loop                                 *
+        *                                                                 *
+        ******************************************************************/
         void ProcessEvents()
         {
             sf::Event event;
@@ -104,7 +134,43 @@ class GAME
                 }
             }
         }
-        void Update();
-        void Render();
+
+        /******************************************************************
+        *                                                                 *
+        * Update                                                          *
+        *                                                                 *
+        * Description:                                                    *
+        *                                                                 *
+        *                                                                 *
+        * Method Variables:                                               *
+        *                                                                 *
+        * Use:                                                            *
+        *                                                                 *
+        ******************************************************************/
+
+        void Update()
+        {
+
+        }
+
+        /******************************************************************
+        *                                                                 *
+        * Render                                                          *
+        *                                                                 *
+        * Description:                                                    *
+        *       Holders the items to draw on screen                       *
+        *                                                                 *
+        * Method Variables:                                               *
+        *                                                                 *
+        * Use:                                                            *
+        *       Clear the screen, and render objects                      *
+        ******************************************************************/
+
+        void Render()
+        {
+            mWindow.clear();
+            mWindow.draw(mPlayer);
+            mWindow.display();
+        }
 
 };
