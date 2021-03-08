@@ -56,12 +56,15 @@
 class GAME
 {
     protected:
-        sf::RenderWindow window;
-        sf::CircleShape player;
-        bool isMovingUp = false;
-        bool isMovingDown = false;
         const sf::Time TimePerFrame = sf::seconds(1.f/60.f);
         const float pSpeed = 100.f;
+
+        sf::RenderWindow window;
+        sf::CircleShape player;
+
+        bool isMovingUp = false;
+        bool isMovingDown = false;
+
     public:
 
         /******************************************************************
@@ -183,17 +186,24 @@ class GAME
 
         void Update(sf::Time dTime)
         {
-            sf::Vector2f movement(0.f, 0.f);   
-            if(isMovingUp)
+            sf::Vector2f movement(0.f, 0.f);
+            if (player.getPosition().y >= 0)
             {
-                movement.y -= pSpeed;
-            }if(isMovingDown)
-            {
-                movement.y += pSpeed;
+                if(isMovingUp)
+                {
+                    movement.y -= pSpeed;
+                }
+                player.move(movement * dTime.asSeconds());
             }
+            if (player.getPosition().y <= 450)
+            {
+                if(isMovingDown)
+                {
+                    movement.y += pSpeed;
+                }
 
-            player.move(movement * dTime.asSeconds());
-
+                player.move(movement * dTime.asSeconds());
+            }
         }
 
         /******************************************************************
