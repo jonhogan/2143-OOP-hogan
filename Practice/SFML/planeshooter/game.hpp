@@ -126,14 +126,21 @@ class GAME
         void ProcessEvents()
         {
             sf::Event event;
-            while (mWindow.pollEvent(event))
+         while (mWindow.pollEvent(event)) 
             {
-                if (event.type == sf::Event::Closed)
+                switch(event.type)
                 {
-                    mWindow.close();
+                    case sf::Event::KeyPressed:
+                         handlePlayerInput(event.key.code, true);
+                         break;
+                    case sf::Event::KeyReleased:
+                         handlePlayerInput(event.key.code, false);
+                         break;
                 }
+                        
             }
         }
+        
 
         /******************************************************************
         *                                                                 *
@@ -171,6 +178,32 @@ class GAME
             mWindow.clear();
             mWindow.draw(mPlayer);
             mWindow.display();
+        }
+
+        /******************************************************************
+        *                                                                 *
+        * handlePlayerInput                                               *
+        *                                                                 *
+        * Description:                                                    *
+        *       Holders the items to draw on screen                       *
+        *                                                                 *
+        * Method Variables:                                               *
+        *                                                                 *
+        * Use:                                                            *
+        *       Clear the screen, and render objects                      *
+        ******************************************************************/
+
+        void handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
+        {
+            if (key == sf::Keyboard::Up ||
+                key == sf::Keyboard::W)
+                {
+                    mIsMovingUp = isPressed;
+                }else if (key == sf::Keyboard::Down ||
+                key == sf::Keyboard::S)
+                {
+                    mIsMovingDown = isPressed;
+                }
         }
 
 };

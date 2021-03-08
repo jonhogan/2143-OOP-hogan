@@ -66,6 +66,7 @@ int main()
                         // move down...
                         B.moveDown(5);
                     }
+                    break;
             }
 
             
