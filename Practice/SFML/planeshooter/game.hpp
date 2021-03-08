@@ -40,8 +40,8 @@
 *       None                                                          *
 *                                                                     *
 * Protected Methods:                                                  *
-*       sf::RenderWindow mWindow; Game window                         *
-*       sf::CircleShape mPlayer;  Player object                       *
+*       sf::RenderWindow window; Game window                         *
+*       sf::CircleShape player;  Player object                       *
 *                                                                     *
 * Public Methods:                                                     *
 *       GAME                 *                                        *
@@ -56,8 +56,10 @@
 class GAME
 {
     protected:
-        sf::RenderWindow mWindow;
-        sf::CircleShape mPlayer;
+        sf::RenderWindow window;
+        sf::CircleShape player;
+        bool isMovingUp = false;
+        bool isMovingDown = false;
 
     public:
 
@@ -75,13 +77,13 @@ class GAME
         *   Creates our game object                                       *
         *                                                                 *
         ******************************************************************/
-        GAME(): mWindow(
+        GAME(): window(
             sf::VideoMode(640,480), "Game Window",
-            sf::Style::Default), mPlayer()
+            sf::Style::Default), player()
         {
-            mPlayer.setRadius(40.f);
-            mPlayer.setPosition(100.f, 100.f);
-            mPlayer.setFillColor(sf::Color(76, 0, 153, 255));
+            player.setRadius(15.f);
+            player.setPosition(100.f, 100.f);
+            player.setFillColor(sf::Color(76, 0, 153, 255));
         }
 
         /******************************************************************
@@ -100,7 +102,7 @@ class GAME
 
         void Run()
         {
-            while (mWindow.isOpen())
+            while (window.isOpen())
             {
                 ProcessEvents();
                 Update();
@@ -126,7 +128,7 @@ class GAME
         void ProcessEvents()
         {
             sf::Event event;
-         while (mWindow.pollEvent(event)) 
+         while (window.pollEvent(event)) 
             {
                 switch(event.type)
                 {
@@ -136,6 +138,9 @@ class GAME
                     case sf::Event::KeyReleased:
                          handlePlayerInput(event.key.code, false);
                          break;
+                    case sf::Event::Closed:
+                        window.close();
+                        break;
                 }
                         
             }
@@ -147,7 +152,8 @@ class GAME
         * Update                                                          *
         *                                                                 *
         * Description:                                                    *
-        *                                                                 *
+        *   Updates the status of the game. Includes player and game      *
+        *   objects (Non-player controlled)                               *
         *                                                                 *
         * Method Variables:                                               *
         *                                                                 *
@@ -157,6 +163,16 @@ class GAME
 
         void Update()
         {
+            sf::Vector2f movement(0.f, 0.f);   
+            if(isMovingUp)
+            {
+                movement.y -= 1.f;
+            }else if(isMovingDown)
+            {
+                movement.y += 1.f;
+            }
+
+            player.move(movement);
 
         }
 
@@ -175,9 +191,9 @@ class GAME
 
         void Render()
         {
-            mWindow.clear();
-            mWindow.draw(mPlayer);
-            mWindow.display();
+            window.clear();
+            window.draw(player);
+            window.display();
         }
 
         /******************************************************************
@@ -198,11 +214,12 @@ class GAME
             if (key == sf::Keyboard::Up ||
                 key == sf::Keyboard::W)
                 {
-                    mIsMovingUp = isPressed;
-                }else if (key == sf::Keyboard::Down ||
+                    isMovingUp = isPressed;
+                }
+            if (key == sf::Keyboard::Down ||
                 key == sf::Keyboard::S)
                 {
-                    mIsMovingDown = isPressed;
+                    isMovingDown = isPressed;
                 }
         }
 
