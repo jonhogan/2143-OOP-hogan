@@ -60,7 +60,8 @@ class GAME
         sf::CircleShape player;
         bool isMovingUp = false;
         bool isMovingDown = false;
-
+        const sf::Time TimePerFrame = sf::seconds(1.f/60.f);
+        const float pSpeed = 100.f;
     public:
 
         /******************************************************************
@@ -82,7 +83,7 @@ class GAME
             sf::Style::Default), player()
         {
             player.setRadius(15.f);
-            player.setPosition(100.f, 100.f);
+            player.setPosition(100.f, 200.f);
             player.setFillColor(sf::Color(76, 0, 153, 255));
         }
 
@@ -102,10 +103,29 @@ class GAME
 
         void Run()
         {
+            sf::Clock clock;
+
+            /*
+
+                Implementing fixed time steps.
+
+                Helps to solve issues with lag. This will help prevent
+                colliding objects from passing through eachother
+
+            */
+
+            sf::Time lastUpdate = sf::Time::Zero;
+
             while (window.isOpen())
             {
                 ProcessEvents();
-                Update();
+                lastUpdate += clock.restart();
+                while (lastUpdate > TimePerFrame)
+                {
+                    lastUpdate -= TimePerFrame;
+                    ProcessEvents();
+                    Update(TimePerFrame);
+                }
                 Render();
             }
 
@@ -161,18 +181,18 @@ class GAME
         *                                                                 *
         ******************************************************************/
 
-        void Update()
+        void Update(sf::Time dTime)
         {
             sf::Vector2f movement(0.f, 0.f);   
             if(isMovingUp)
             {
-                movement.y -= 1.f;
-            }else if(isMovingDown)
+                movement.y -= pSpeed;
+            }if(isMovingDown)
             {
-                movement.y += 1.f;
+                movement.y += pSpeed;
             }
 
-            player.move(movement);
+            player.move(movement * dTime.asSeconds());
 
         }
 
