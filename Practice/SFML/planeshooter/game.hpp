@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <vector>
 
 /***************************************************************************
 ****************************************************************************
@@ -53,10 +54,11 @@
 ***********************************************************************
 **********************************************************************/
 
+const sf::Time FrameTime = sf::seconds(1.f/60.f);
+
 class GAME
 {
     protected:
-        const sf::Time TimePerFrame = sf::seconds(1.f/60.f);
         const float pSpeed = 100.f;
 
         sf::RenderWindow window;
@@ -64,6 +66,8 @@ class GAME
 
         bool isMovingUp = false;
         bool isMovingDown = false;
+
+        std::vector <DEBRIS> mobs;
 
     public:
 
@@ -123,11 +127,11 @@ class GAME
             {
                 ProcessEvents();
                 lastUpdate += clock.restart();
-                while (lastUpdate > TimePerFrame)
+                while (lastUpdate > FrameTime)
                 {
-                    lastUpdate -= TimePerFrame;
+                    lastUpdate -= FrameTime;
                     ProcessEvents();
-                    Update(TimePerFrame);
+                    Update(FrameTime);
                 }
                 Render();
             }
@@ -252,5 +256,51 @@ class GAME
                     isMovingDown = isPressed;
                 }
         }
+
+};
+
+class DEBRIS
+{
+    private:
+        sf::RectangleShape *rectangle;
+        sf::Vector2f position;
+
+        float width = 640;
+        float height = 480;
+        
+        float yStart;
+        
+        /**
+        * virtual = A virtual function a member function which is declared within base class and is re-defined (Overriden) by derived class.
+        * function draw:
+        *     draw an SFML object to some window
+        */
+        virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const
+        {
+            target.draw(*rectangle, states);
+        }
+
+    public:
+        DEBRIS()
+        {
+            yStart = rand() % (int)height;
+            
+            // define a rectangle
+            rectangle = new sf::RectangleShape (sf::Vector2f(15,15));
+            rectangle -> setFillColor(sf::Color(rand()%255, rand()%255, rand()%255, 255));
+            rectangle -> setPosition(sf::Vector2f(640, yStart));
+        }
+       
+        ~DEBRIS()
+        {
+
+        }
+
+        void move()
+        {
+
+        }
+
+
 
 };
