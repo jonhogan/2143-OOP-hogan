@@ -14,6 +14,6 @@
 
 int main()
 {
-    GAME game;
+    Game game;
     game.Run();
 }

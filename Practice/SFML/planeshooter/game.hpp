@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <iostream>
 
 /***************************************************************************
 ****************************************************************************
@@ -41,8 +42,8 @@
 *       None                                                          *
 *                                                                     *
 * Protected Methods:                                                  *
-*       sf::RenderWindow window; Game window                         *
-*       sf::CircleShape player;  Player object                       *
+*       sf::RenderWindow m_window; Game window                        *
+*       sf::CircleShape m_player;  Player object                      *
 *                                                                     *
 * Public Methods:                                                     *
 *       GAME                 *                                        *
@@ -54,30 +55,30 @@
 ***********************************************************************
 **********************************************************************/
 
-const sf::Time FrameTime = sf::seconds(1.f/60.f);
+const sf::Time FRAMETIME = sf::seconds(1.f/60.f);
 
-class GAME
+class Game
 {
     protected:
-        const float pSpeed = 100.f;
+        const float PLAYERSPEED = 100.f;
 
-        sf::RenderWindow window;
-        sf::CircleShape player;
+        sf::RenderWindow m_window;
+        sf::Sprite m_player;
+        sf::Texture m_playerTexture;
 
-        bool isMovingUp = false;
-        bool isMovingDown = false;
 
-        std::vector <DEBRIS> mobs;
+        bool m_moveUp = false;
+        bool m_moveDown = false;
 
     public:
 
         /******************************************************************
         *                                                                 *
-        * GAME                                                            *
+        * Game                                                            *
         *                                                                 *
         * Description:                                                    *
-        *       Holds the game window, player object and anyother objects *
-        *       in game.                                                  *
+        *       Holds the game window, m_player object and anyother       *
+        *       objects in game.                                          *
         *                                                                 *
         * Method Variables:                                               *
         *                                                                 *
@@ -85,13 +86,19 @@ class GAME
         *   Creates our game object                                       *
         *                                                                 *
         ******************************************************************/
-        GAME(): window(
-            sf::VideoMode(640,480), "Game Window",
-            sf::Style::Default), player()
+        Game(): m_window(
+            sf::VideoMode(1920,1080), "Game Window",
+            sf::Style::Default), m_player(), m_playerTexture()
         {
-            player.setRadius(15.f);
-            player.setPosition(100.f, 200.f);
-            player.setFillColor(sf::Color(76, 0, 153, 255));
+            if(!m_playerTexture.loadFromFile("Spaceship14.png"))
+            {
+                std::cout << "Texture not found!";
+            }
+            m_player.setTexture(m_playerTexture);
+            m_player.setPosition(320.f,280.f);
+            m_player.rotate(90.f);
+
+
         }
 
         /******************************************************************
@@ -102,7 +109,7 @@ class GAME
         *       Holds the window while loop.                              *
         *                                                                 *
         * Method Variables:                                               *
-        *                                                                 *
+        *   sf::Clock t_clock                                             *
         * Use:                                                            *
         *   Runs the processes to run the game whilewindow.isOpen = true  *
         *                                                                 *
@@ -110,7 +117,7 @@ class GAME
 
         void Run()
         {
-            sf::Clock clock;
+            sf::Clock t_clock;
 
             /*
 
@@ -121,23 +128,23 @@ class GAME
 
             */
 
-            sf::Time lastUpdate = sf::Time::Zero;
+            sf::Time t_lastUpdate = sf::Time::Zero;
 
-            while (window.isOpen())
+            while (m_window.isOpen())
             {
                 ProcessEvents();
-                lastUpdate += clock.restart();
-                while (lastUpdate > FrameTime)
+                t_lastUpdate += t_clock.restart();
+                while (t_lastUpdate > FRAMETIME)
                 {
-                    lastUpdate -= FrameTime;
+                    t_lastUpdate -= FRAMETIME;
                     ProcessEvents();
-                    Update(FrameTime);
+                    Update(FRAMETIME);
                 }
                 Render();
             }
 
         }
-
+ 
         /******************************************************************
         *                                                                 *
         * ProcessEvents                                                   *
@@ -155,7 +162,7 @@ class GAME
         void ProcessEvents()
         {
             sf::Event event;
-         while (window.pollEvent(event)) 
+         while (m_window.pollEvent(event)) 
             {
                 switch(event.type)
                 {
@@ -166,7 +173,7 @@ class GAME
                          handlePlayerInput(event.key.code, false);
                          break;
                     case sf::Event::Closed:
-                        window.close();
+                        m_window.close();
                         break;
                 }
                         
@@ -190,23 +197,24 @@ class GAME
 
         void Update(sf::Time dTime)
         {
-            sf::Vector2f movement(0.f, 0.f);
-            if (player.getPosition().y >= 0)
+            sf::Vector2f t_movement(0.f, 0.f);
+            if (m_player.getPosition().y >= 0)
             {
-                if(isMovingUp)
+                if(m_moveUp)
                 {
-                    movement.y -= pSpeed;
+                    t_movement.y -= PLAYERSPEED;
                 }
-                player.move(movement * dTime.asSeconds());
+                m_player.move(t_movement * dTime.asSeconds());
             }
-            if (player.getPosition().y <= 450)
+            if (m_player.getPosition().y <= 915)
             {
-                if(isMovingDown)
+                if(m_moveDown)
                 {
-                    movement.y += pSpeed;
+                    float t_downSpeed = PLAYERSPEED*2;
+                    t_movement.y += t_downSpeed;
                 }
 
-                player.move(movement * dTime.asSeconds());
+                m_player.move(t_movement * dTime.asSeconds());
             }
         }
 
@@ -225,9 +233,9 @@ class GAME
 
         void Render()
         {
-            window.clear();
-            window.draw(player);
-            window.display();
+            m_window.clear();
+            m_window.draw(m_player);
+            m_window.display();
         }
 
         /******************************************************************
@@ -248,59 +256,13 @@ class GAME
             if (key == sf::Keyboard::Up ||
                 key == sf::Keyboard::W)
                 {
-                    isMovingUp = isPressed;
+                    m_moveUp = isPressed;
                 }
             if (key == sf::Keyboard::Down ||
                 key == sf::Keyboard::S)
                 {
-                    isMovingDown = isPressed;
+                    m_moveDown = isPressed;
                 }
         }
-
-};
-
-class DEBRIS
-{
-    private:
-        sf::RectangleShape *rectangle;
-        sf::Vector2f position;
-
-        float width = 640;
-        float height = 480;
-        
-        float yStart;
-        
-        /**
-        * virtual = A virtual function a member function which is declared within base class and is re-defined (Overriden) by derived class.
-        * function draw:
-        *     draw an SFML object to some window
-        */
-        virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const
-        {
-            target.draw(*rectangle, states);
-        }
-
-    public:
-        DEBRIS()
-        {
-            yStart = rand() % (int)height;
-            
-            // define a rectangle
-            rectangle = new sf::RectangleShape (sf::Vector2f(15,15));
-            rectangle -> setFillColor(sf::Color(rand()%255, rand()%255, rand()%255, 255));
-            rectangle -> setPosition(sf::Vector2f(640, yStart));
-        }
-       
-        ~DEBRIS()
-        {
-
-        }
-
-        void move()
-        {
-
-        }
-
-
 
 };
