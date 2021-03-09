@@ -30,30 +30,30 @@
 ****************************************************************************                                                                       
 ***************************************************************************/
 
-/**********************************************************************
-***********************************************************************
-*                                                                     *
-* GAME                                                                *
-*                                                                     *
-* Description:                                                        *
-*       GAME class, will handle game related inputs                   *
-*                                                                     *
-* Private Methods:                                                    *
-*       None                                                          *
-*                                                                     *
-* Protected Methods:                                                  *
-*       sf::RenderWindow m_window; Game window                        *
-*       sf::CircleShape m_player;  Player object                      *
-*                                                                     *
-* Public Methods:                                                     *
-*       GAME                 *                                        *
-*       Run                  * See notes                              *
-*       ProcessEvents        * below on                               *
-*       Update               * usage                                  *
-*       Render               *                                        *
-*                            *                                        *
-***********************************************************************
-**********************************************************************/
+/***************************************************************************
+****************************************************************************
+*                                                                          *
+* GAME                                                                     *
+*                                                                          *
+* Description:                                                             *
+*       GAME class, will handle game related inputs                        *
+*                                                                          *
+* Private Methods:                                                         *
+*       None                                                               *
+*                                                                          *
+* Protected Methods:                                                       *
+*       sf::RenderWindow m_window; Game window                             *
+*       sf::CircleShape m_player;  Player object                           *
+*                                                                          *
+* Public Methods:                                                          *
+*       GAME                 *                                             *
+*       Run                  * See notes                                   *
+*       ProcessEvents        * below on                                    *
+*       Update               * usage                                       *
+*       Render               *                                             *
+*                            *                                             *
+****************************************************************************
+***************************************************************************/
 
 const sf::Time FRAMETIME = sf::seconds(1.f/60.f);
 
@@ -72,20 +72,20 @@ class Game
 
     public:
 
-        /******************************************************************
-        *                                                                 *
-        * Game                                                            *
-        *                                                                 *
-        * Description:                                                    *
-        *       Holds the game window, m_player object and anyother       *
-        *       objects in game.                                          *
-        *                                                                 *
-        * Method Variables:                                               *
-        *                                                                 *
-        * Use:                                                            *
-        *   Creates our game object                                       *
-        *                                                                 *
-        ******************************************************************/
+        /*******************************************************************
+        *                                                                  *
+        * Game                                                             *
+        *                                                                  *
+        * Description:                                                     *
+        *       Holds the game window, m_player object and anyother        *
+        *       objects in game.                                           *
+        *                                                                  *
+        * Method Variables:                                                *
+        *                                                                  *
+        * Use:                                                             *
+        *   Creates our game object                                        *
+        *                                                                  *
+        *******************************************************************/
         Game(): m_window(
             sf::VideoMode(1920,1080), "Game Window",
             sf::Style::Default), m_player(), m_playerTexture()
@@ -101,19 +101,19 @@ class Game
 
         }
 
-        /******************************************************************
-        *                                                                 *
-        * Run                                                             *
-        *                                                                 *
-        * Description:                                                    *
-        *       Holds the window while loop.                              *
-        *                                                                 *
-        * Method Variables:                                               *
-        *   sf::Clock t_clock                                             *
-        * Use:                                                            *
-        *   Runs the processes to run the game whilewindow.isOpen = true  *
-        *                                                                 *
-        ******************************************************************/
+        /*******************************************************************
+        *                                                                  *
+        * Run                                                              *
+        *                                                                  *
+        * Description:                                                     *
+        *       Holds the window while loop.                               *
+        *                                                                  *
+        * Method Variables:                                                *
+        *   sf::Clock t_clock                                              *
+        * Use:                                                             *
+        *   Runs the processes to run the game whilewindow.isOpen = true   *
+        *                                                                  *
+        *******************************************************************/
 
         void Run()
         {
@@ -145,20 +145,20 @@ class Game
 
         }
  
-        /******************************************************************
-        *                                                                 *
-        * ProcessEvents                                                   *
-        *                                                                 *
-        * Description:                                                    *
-        *       Polls events in game, key presses, mouse clicks and       *
-        *       other events                                              *
-        *                                                                 *
-        * Method Variables:                                               *
-        *                                                                 *
-        * Use:                                                            *
-        *   Runs the pollEvent while loop                                 *
-        *                                                                 *
-        ******************************************************************/
+        /*******************************************************************
+        *                                                                  *
+        * ProcessEvents                                                    *
+        *                                                                  *
+        * Description:                                                     *
+        *       Polls events in game, key presses, mouse clicks and        *
+        *       other events                                               *
+        *                                                                  *
+        * Method Variables:                                                *
+        *                                                                  *
+        * Use:                                                             *
+        *   Runs the pollEvent while loop                                  *
+        *                                                                  *
+        *******************************************************************/
         void ProcessEvents()
         {
             sf::Event event;
@@ -181,19 +181,19 @@ class Game
         }
         
 
-        /******************************************************************
-        *                                                                 *
-        * Update                                                          *
-        *                                                                 *
-        * Description:                                                    *
-        *   Updates the status of the game. Includes player and game      *
-        *   objects (Non-player controlled)                               *
-        *                                                                 *
-        * Method Variables:                                               *
-        *                                                                 *
-        * Use:                                                            *
-        *                                                                 *
-        ******************************************************************/
+        /*******************************************************************
+        *                                                                  *
+        * Update                                                           *
+        *                                                                  *
+        * Description:                                                     *
+        *   Updates the status of the game. Includes player and game       *
+        *   objects (Non-player controlled)                                *
+        *                                                                  *
+        * Method Variables:                                                *
+        *                                                                  *
+        * Use:                                                             *
+        *                                                                  *
+        *******************************************************************/
 
         void Update(sf::Time dTime)
         {
@@ -218,18 +218,18 @@ class Game
             }
         }
 
-        /******************************************************************
-        *                                                                 *
-        * Render                                                          *
-        *                                                                 *
-        * Description:                                                    *
-        *       Holders the items to draw on screen                       *
-        *                                                                 *
-        * Method Variables:                                               *
-        *                                                                 *
-        * Use:                                                            *
-        *       Clear the screen, and render objects                      *
-        ******************************************************************/
+        /*******************************************************************
+        *                                                                  *
+        * Render                                                           *
+        *                                                                  *
+        * Description:                                                     *
+        *       Holders the items to draw on screen                        *
+        *                                                                  *
+        * Method Variables:                                                *
+        *                                                                  *
+        * Use:                                                             *
+        *       Clear the screen, and render objects                       *
+        *******************************************************************/
 
         void Render()
         {
@@ -238,18 +238,18 @@ class Game
             m_window.display();
         }
 
-        /******************************************************************
-        *                                                                 *
-        * handlePlayerInput                                               *
-        *                                                                 *
-        * Description:                                                    *
-        *       Holders the items to draw on screen                       *
-        *                                                                 *
-        * Method Variables:                                               *
-        *                                                                 *
-        * Use:                                                            *
-        *       Clear the screen, and render objects                      *
-        ******************************************************************/
+        /*******************************************************************
+        *                                                                  *
+        * handlePlayerInput                                                *
+        *                                                                  *
+        * Description:                                                     *
+        *       Holders the items to draw on screen                        *
+        *                                                                  *
+        * Method Variables:                                                *
+        *                                                                  *
+        * Use:                                                             *
+        *       Clear the screen, and render objects                       *
+        *******************************************************************/
 
         void handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
         {
