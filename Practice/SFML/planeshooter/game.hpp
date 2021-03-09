@@ -90,13 +90,13 @@ class Game
             sf::VideoMode(1920,1080), "Game Window",
             sf::Style::Default), m_player(), m_playerTexture()
         {
-            if(!m_playerTexture.loadFromFile("Spaceship14.png"))
+            if(!m_playerTexture.loadFromFile("Spaceship3.png"))
             {
                 std::cout << "Texture not found!";
             }
             m_player.setTexture(m_playerTexture);
-            m_player.setPosition(320.f,280.f);
-            m_player.rotate(90.f);
+            m_player.setPosition(160.f,500.f);
+            //m_player.rotate(90.f);
 
 
         }
@@ -206,7 +206,7 @@ class Game
                 }
                 m_player.move(t_movement * dTime.asSeconds());
             }
-            if (m_player.getPosition().y <= 915)
+            if (m_player.getPosition().y <= 1035)
             {
                 if(m_moveDown)
                 {
