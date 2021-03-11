@@ -244,10 +244,10 @@ class Game
 /***************************************************************************
 ****************************************************************************
 *                                                                          *
-* TextureHolder                                                            *
+* AssetHolder                                                            *
 *                                                                          *
 * Description:                                                             *
-*       Manages the textures of the game                                   *
+*       Manages the assets of the game                                   *
 *                                                                          *
 * Private Methods:                                                         *
 *       None                                                               *
@@ -260,7 +260,7 @@ class Game
 ****************************************************************************
 ***************************************************************************/
 
-//class TextureHolder
+//class AssetsHolder
 //{
 //    public:
 //        void loader(Textures::ID id, )
