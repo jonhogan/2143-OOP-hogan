@@ -64,7 +64,7 @@ class Game
             sf::VideoMode(1920,1080), "Game Window",
             sf::Style::Default), m_player(), m_playerTexture()
         {
-            if(!m_playerTexture.loadFromFile("./assets/Spaceship3.png"))
+            if(!m_playerTexture.loadFromFile("./assets/textures/Spaceship3.png"))
             {
                 std::cout << "Texture not found!";
             }
