@@ -31,6 +31,11 @@
 const sf::Time FRAMETIME = sf::seconds(1.f/60.f);
 //const sf::Texture& get (Texture::ID id) const;
 
+namespace assets
+{
+    enum ID {background, spaceship};
+}
+
 class Game
 {
     protected:
@@ -244,10 +249,10 @@ class Game
 /***************************************************************************
 ****************************************************************************
 *                                                                          *
-* AssetHolder                                                            *
+* AssetHolder                                                              *
 *                                                                          *
 * Description:                                                             *
-*       Manages the assets of the game                                   *
+*       Manages the assets of the game                                     *
 *                                                                          *
 * Private Methods:                                                         *
 *       None                                                               *
@@ -260,8 +265,8 @@ class Game
 ****************************************************************************
 ***************************************************************************/
 
-//class AssetsHolder
-//{
-//    public:
-//        void loader(Textures::ID id, )
-//};
+class AssetsHolder
+{
+    protected:
+        std::map<assets::ID, std::unique_ptr<sf::Texture>> m_assetMap; 
+};
