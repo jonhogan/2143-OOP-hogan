@@ -1,3 +1,4 @@
+#pragma once
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <iostream>
@@ -28,6 +29,7 @@
 ***************************************************************************/
 
 const sf::Time FRAMETIME = sf::seconds(1.f/60.f);
+//const sf::Texture& get (Texture::ID id) const;
 
 class Game
 {
@@ -62,7 +64,7 @@ class Game
             sf::VideoMode(1920,1080), "Game Window",
             sf::Style::Default), m_player(), m_playerTexture()
         {
-            if(!m_playerTexture.loadFromFile("Spaceship3.png"))
+            if(!m_playerTexture.loadFromFile("./assets/Spaceship3.png"))
             {
                 std::cout << "Texture not found!";
             }
@@ -139,10 +141,10 @@ class Game
                 switch(event.type)
                 {
                     case sf::Event::KeyPressed:
-                         handlePlayerInput(event.key.code, true);
+                         PlayerInput(event.key.code, true);
                          break;
                     case sf::Event::KeyReleased:
-                         handlePlayerInput(event.key.code, false);
+                         PlayerInput(event.key.code, false);
                          break;
                     case sf::Event::Closed:
                         m_window.close();
@@ -195,7 +197,7 @@ class Game
         * Render                                                           *
         *                                                                  *
         * Description:                                                     *
-        *       Holders the items to draw on screen                        *
+        *       Holds the items to draw on screen                        *
         *                                                                  *
         * Method Variables:                                                *
         *                                                                  *
@@ -212,18 +214,18 @@ class Game
 
         /*******************************************************************
         *                                                                  *
-        * handlePlayerInput                                                *
+        * PlayerInput                                                      *
         *                                                                  *
         * Description:                                                     *
-        *       Holders the items to draw on screen                        *
+        *       Detects input from the player                              *
         *                                                                  *
         * Method Variables:                                                *
         *                                                                  *
         * Use:                                                             *
-        *       Clear the screen, and render objects                       *
+        *       Sets m_moveUp and m_moveDown to true if keys are pressed   *
         *******************************************************************/
 
-        void handlePlayerInput(sf::Keyboard::Key key, bool isPressed)
+        void PlayerInput(sf::Keyboard::Key key, bool isPressed)
         {
             if (key == sf::Keyboard::Up ||
                 key == sf::Keyboard::W)
@@ -238,3 +240,28 @@ class Game
         }
 
 };
+
+/***************************************************************************
+****************************************************************************
+*                                                                          *
+* TextureHolder                                                            *
+*                                                                          *
+* Description:                                                             *
+*       Manages the textures of the game                                   *
+*                                                                          *
+* Private Methods:                                                         *
+*       None                                                               *
+*                                                                          *
+* Protected Methods:                                                       *
+*                                                                          *
+*                                                                          *
+* Public Methods:                                                          *
+*                                                                          *
+****************************************************************************
+***************************************************************************/
+
+//class TextureHolder
+//{
+//    public:
+//        void loader(Textures::ID id, )
+//};
