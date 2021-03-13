@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <iostream>
+#include "assets.hpp"
 
 /***************************************************************************
 ****************************************************************************
@@ -30,11 +31,6 @@
 
 const sf::Time FRAMETIME = sf::seconds(1.f/60.f);
 //const sf::Texture& get (Texture::ID id) const;
-
-namespace assets
-{
-    enum ID {background, spaceship};
-}
 
 class Game
 {
@@ -244,29 +240,4 @@ class Game
                 }
         }
 
-};
-
-/***************************************************************************
-****************************************************************************
-*                                                                          *
-* AssetHolder                                                              *
-*                                                                          *
-* Description:                                                             *
-*       Manages the assets of the game                                     *
-*                                                                          *
-* Private Methods:                                                         *
-*       None                                                               *
-*                                                                          *
-* Protected Methods:                                                       *
-*                                                                          *
-*                                                                          *
-* Public Methods:                                                          *
-*                                                                          *
-****************************************************************************
-***************************************************************************/
-
-class AssetsHolder
-{
-    protected:
-        std::map<assets::ID, std::unique_ptr<sf::Texture>> m_assetMap; 
 };
