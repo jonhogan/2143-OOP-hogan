@@ -127,4 +127,8 @@ class RGBPallette
                 array[i] = other.array[i];
             }
         }
+        void RGBCopy()
+        {
+
+        }
 };
