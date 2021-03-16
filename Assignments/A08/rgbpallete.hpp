@@ -62,6 +62,13 @@ class RGBColor
             return b;
         }
 
+        std::string GetRGB()    // Get RGB String
+        {
+            std::string rgb = "[" + r + ' ' + ',' + g + ' ' + ',' + b + ']';
+            return rgb;
+
+        }
+
         void GrayScale()        // averages colors
         {
             int gray;
@@ -106,7 +113,8 @@ class RGBPallette
 {
     protected:
         RGBColor *array;     // int pointer (dynamic memory)
-        int size;       
+        int size;      
+        int top =0; 
     public:
         RGBPallette()
         {
@@ -127,8 +135,71 @@ class RGBPallette
                 array[i] = other.array[i];
             }
         }
+
+
+        /**************************************************************
+        * Public void: RGBCopy
+        *
+        * Descriptions:
+        *         makes a copy of the array
+        * Params:
+        *         NULL
+        * Returns:
+        *         NULL
+        **************************************************************/
         void RGBCopy()
         {
+            RGBColor* B = new RGBColor[size];      // New memory
 
+            for (int i = 0; i < size; i++) // Copy data to new stack
+            {
+                B[i] = array[i];
+            }
+
+            delete[] array;                      // Delete old array
+            array = B;                           // Reset the pointer
+        }
+
+        /**************************************************************
+        * Public void: Print
+        *
+        * Descriptions:
+        *         Prints out the array
+        * Params:
+        *         NULL
+        * Returns:
+        *         NULL
+        **************************************************************/
+        void Print()
+        {
+            for (int i = 0; i < top; i++)
+            {
+                std::cout << array[i].GetRGB() << ", ";
+            }
+            std::cout << std::endl;
+        }
+
+        /**************************************************************
+        * Public Push
+        *
+        * Description:
+        *         Add RGBColor to the top of the array
+        *
+        * Params:
+        *         [RGBColor]: Data to add
+        *
+        * Returns:
+        *         Null
+        **************************************************************/
+
+        void Push(RGBColor x)
+        {
+            if ((top + 1) == size)             // Increase stack size if full
+            {
+                std::cout << "ERROR: Array is full" << std::endl;
+            }else
+            {
+                array[++top] = x;
+            }
         }
 };
